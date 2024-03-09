@@ -22,7 +22,7 @@ export class CreateUserDto {
       minNumbers: 1,
       minSymbols: 1,
     },
-    { message: 'Senha deve ter no mínimo 6 caracteres.' },
+    { message: 'Senha deve ser forte.' },
   )
   password: string;
 }
