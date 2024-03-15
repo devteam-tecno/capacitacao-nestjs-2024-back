@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Task } from '../../task/entities/task.entity';
 
 @Entity({ name: 'user', orderBy: { id: 'ASC' } })
 export class User {
@@ -25,4 +26,7 @@ export class User {
     select: false,
   })
   password: string;
+
+  @OneToMany(() => Task, (task) => task.user, { onDelete: 'CASCADE' })
+  tasks: Task[];
 }
