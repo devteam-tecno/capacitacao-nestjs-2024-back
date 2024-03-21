@@ -3,10 +3,12 @@ import {
   IsEnum,
   IsInt,
   IsNotEmpty,
+  IsOptional,
   IsString,
 } from 'class-validator';
 import { Status } from '../../../common/enum/Status.enum';
 import { Priority } from '../../../common/enum/Priority.enum';
+import { Transform } from 'class-transformer';
 
 export class CreateTaskDto {
   @IsString({ message: 'Título deve ser uma string.' })
@@ -18,7 +20,7 @@ export class CreateTaskDto {
   description: string;
 
   @IsString({ message: 'Status deve ser uma string.' })
-  @IsNotEmpty({ message: 'Status é obrigatório.' })
+  @IsOptional({ message: 'Status é opcional.' })
   @IsEnum(Status)
   status: Status;
 
@@ -33,5 +35,6 @@ export class CreateTaskDto {
 
   @IsInt({ message: 'Usuário deve ser um número inteiro.' })
   @IsNotEmpty({ message: 'Usuário é obrigatório.' })
+  @Transform(({ value }) => parseInt(value, 10))
   userId: number;
 }

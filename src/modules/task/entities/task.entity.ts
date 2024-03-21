@@ -18,7 +18,13 @@ export class Task {
   @Column({ type: 'text', name: 'description', nullable: false })
   description: string;
 
-  @Column({ type: 'varchar', length: 50, name: 'status', nullable: false })
+  @Column({
+    type: 'varchar',
+    length: 50,
+    name: 'status',
+    nullable: true,
+    default: 'Em andamento',
+  })
   status: string;
 
   @Column({ type: 'datetime', name: 'deadline', nullable: false })
